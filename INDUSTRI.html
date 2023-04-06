@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <link rel="stylesheet" type="text/css" href="main.css">
+  <title>Лучший сайт</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <div class="main">
+    <h2>Работа с датчиками</h2>
+    <button class="btn" onclick="myFunction()">Try it</button>
+    <ul id="demo">
+
+    </ul>
+</div>
+    <script>
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    function myFunction() {
+        (async () => {
+            let response = await fetch('https://kav-api.kovalev.team/servodrive/lastActualData?servoDriveId=1');
+            let el = document.getElementById('demo')
+            el.innerHTML = ""
+            let text = await response.text();
+            for (const [key, value] of Object.entries(JSON.parse(text)[0])) {
+                const newEl = document.createElement("li")
+                newEl.appendChild(document.createTextNode(`${key}: ${value}`))
+                el.appendChild(newEl)
+                await sleep(1)
+            }
+        })()
+    }
+    </script>
+    <h1 class="command", >Наша команда</h1>
+    <img class="team_jpg" src="team.gif" width="2000" height="1000"> 
+   <p class="name">
+    
+    Рудометов Н.В.
+    <p>
+    <img class="team_jpg" src="Nikita.jpg", width="1200">
+    <p class="name">
+    Ермачков А.Е. 
+    <p>
+    <img class="team_jpg" src="sverlo.jpg", width="1200", height="2000">
+    <p class="name">
+    Арапов С.В. 
+    <p>
+      <img class="team_jpg" src="serega.jpg">
+    <p class="name">
+    Голубев Д.А.
+    <p class="dima">
+    <img class="team_jpg", src="dima.jpg" width="1200">
+
+   </p>
+  </body>
+</html>
